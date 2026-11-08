@@ -1,0 +1,5 @@
+ID;request_ID;sequence;role;label;approver;status;dueAt;decidedAt;comment
+a1000000-0000-4000-8000-000000000001;e1000000-0000-4000-8000-000000000002;1;DepartmentManager;Responsable du département;manager.it;approved;2026-10-19T09:00:00Z;2026-10-17T11:00:00Z;Besoin confirmé
+a1000000-0000-4000-8000-000000000002;e1000000-0000-4000-8000-000000000002;2;FinanceController;Contrôle financier;;active;2026-10-20T09:00:00Z;;
+a1000000-0000-4000-8000-000000000003;e1000000-0000-4000-8000-000000000002;3;PurchasingDirector;Direction des achats;;waiting;2026-10-22T09:00:00Z;;
+a1000000-0000-4000-8000-000000000004;e1000000-0000-4000-8000-000000000003;1;DepartmentManager;Responsable du département;manager.rh;approved;2026-10-17T08:00:00Z;2026-10-15T10:00:00Z;Budget disponible

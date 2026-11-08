@@ -1,0 +1,88 @@
+:root { --ink: #09253d; --muted: #60758a; --line: #dce6ec; --mint: #12b886; --sky: #dff3ff; }
+html, body, #container, #container-uiarea { min-height: 100%; }
+body.sapUiBody { background: #eef3f6; color: var(--ink); }
+.pfPage, .pfPage > section { background: transparent !important; }
+.pfLoginShell { min-height: 100vh; box-sizing: border-box; padding: 2rem; background: radial-gradient(circle at 15% 15%, rgba(17,143,220,.28), transparent 27%), radial-gradient(circle at 88% 78%, rgba(255,184,0,.16), transparent 25%), linear-gradient(135deg, #03101b, #062a47 60%, #07515a); }
+.pfLoginCard { width: min(68rem, 100%); min-height: 39rem; background: #fff; border-radius: 1.6rem; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,.3); }
+.pfLoginVisual { flex: 1 1 31rem; box-sizing: border-box; padding: 2.5rem 3rem; color: #fff; background: radial-gradient(circle at 80% 18%, rgba(0,180,255,.3), transparent 25%), linear-gradient(150deg, #04192c, #063f69 65%, #087a77); }
+.pfLoginLogo { width: 6rem !important; height: 6rem !important; object-fit: contain; filter: drop-shadow(0 14px 24px rgba(0,0,0,.28)); }
+.pfLoginHeroTitle { color: #fff !important; font-size: clamp(2.5rem, 5vw, 4.25rem) !important; line-height: 1.03 !important; letter-spacing: -.055em !important; max-width: 30rem; margin: .8rem 0 1rem !important; }
+.pfLoginHeroText { color: #cbe1ed !important; max-width: 28rem; font-size: 1.05rem !important; line-height: 1.6 !important; }
+.pfLoginFoot { color: #8eb7c9 !important; font-size: .76rem !important; }
+.pfLoginForm { flex: 0 1 26rem; box-sizing: border-box; padding: 3rem; background: #fff; }
+.pfLoginKicker { color: #078d79 !important; font-weight: 800 !important; font-size: .72rem !important; letter-spacing: .13em; }
+.pfLoginTitle { color: var(--ink) !important; font-size: 2rem !important; font-weight: 800 !important; letter-spacing: -.035em !important; margin: .45rem 0 .65rem !important; }
+.pfLoginIntro { line-height: 1.5 !important; margin-bottom: 1.8rem; }
+.pfLoginButton { margin-top: 1.5rem; }
+.pfLoginButton .sapMBtnInner { height: 2.75rem; border-radius: .7rem; }
+.pfDemoAccounts { margin-top: 1.6rem; padding: 1rem; gap: .25rem; background: #f3f7f9; border: 1px solid #e0e9ee; border-radius: .75rem; }
+.pfDemoAccounts .sapMText:not(.pfStatLabel) { color: #4d6678; font-size: .76rem; }
+.pfShell { min-height: 100vh; }
+.pfTopbar { padding: 1rem clamp(1.25rem, 5vw, 5rem); background: rgba(255,255,255,.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
+.pfLogoImage { width: 3rem !important; height: 3rem !important; object-fit: contain; flex: 0 0 3rem; filter: drop-shadow(0 7px 10px rgba(3,48,92,.2)); }
+.pfBrand { color: var(--ink) !important; font-weight: 800 !important; letter-spacing: -.03em; }
+.pfMuted { color: var(--muted) !important; }
+.pfNavBar { min-height: 3.25rem !important; padding: 0 clamp(1.25rem, 5vw, 5rem) !important; background: #fff !important; border-bottom: 1px solid var(--line); }
+.pfHero { padding: 4.25rem clamp(1.25rem, 7vw, 8rem) 4.75rem; background: radial-gradient(circle at 80% 20%, rgba(34,187,174,.28), transparent 26%), linear-gradient(125deg, #061725 0%, #0a304c 58%, #075e63 100%); position: relative; overflow: hidden; }
+.pfHero::after { content: ''; position: absolute; width: 300px; height: 300px; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; right: 6%; top: -120px; box-shadow: 0 0 0 55px rgba(255,255,255,.025), 0 0 0 110px rgba(255,255,255,.018); }
+.pfEyebrow { color: #49d6bc !important; font-size: .72rem !important; font-weight: 800 !important; letter-spacing: .14em; }
+.pfHeroTitle { color: white !important; font-size: clamp(2.2rem, 5vw, 4.6rem) !important; line-height: 1 !important; letter-spacing: -.055em !important; max-width: 850px; margin: .75rem 0 1rem !important; }
+.pfHeroText { color: #c8dce9 !important; max-width: 650px; font-size: 1.12rem !important; line-height: 1.6 !important; }
+.pfStats { gap: 1rem; padding: 0 clamp(1.25rem, 5vw, 5rem); margin-top: 1.5rem; position: relative; z-index: 2; }
+.pfStatCard { flex: 1 1 190px; min-width: 190px; min-height: 6.7rem; box-sizing: border-box; padding: 1.35rem 1.45rem; border-radius: 1.15rem; background-color: #fff !important; border: 1px solid rgba(214,225,232,.95); box-shadow: 0 12px 32px rgba(15,48,70,.08); }
+.pfStatPrimary { background: linear-gradient(145deg, #e7fbf6, #fff) !important; border-color: #bde9dc; }
+.pfStatLabel { color: #6c8191 !important; font-size: .72rem !important; font-weight: 800 !important; letter-spacing: .08em; }
+.pfStatNumber .sapMObjectNumberText { color: var(--ink); font-size: 2rem !important; line-height: 1.3; }
+.pfValue .sapMObjectNumberText { font-size: 1.65rem !important; }
+.pfWorkspace { margin: 2rem clamp(1.25rem, 5vw, 5rem); background: white; border: 1px solid var(--line); border-radius: 1.25rem; box-shadow: 0 12px 40px rgba(15,48,70,.06); overflow: hidden; }
+.pfAdminWorkspace { border-top: 4px solid #0b8a80; }
+.pfRequestHero { background: radial-gradient(circle at 82% 25%, rgba(255,184,0,.2), transparent 24%), linear-gradient(125deg, #071a2a, #123f5a 60%, #176b64); }
+.pfGovernanceGrid { gap: 1.25rem; margin: 0 clamp(1.25rem, 5vw, 5rem) 2rem; }
+.pfGovernanceCard { flex: 1 1 28rem; margin: 0; }
+.pfWorkflowStep { padding: .8rem 1rem; margin-top: .5rem; border: 1px solid var(--line); border-left: 4px solid #0b8a80; border-radius: .65rem; background: #fff; }
+.pfAdminSummary { gap: 1.5rem; padding: 0 1.75rem 1rem; }
+.pfSectionHead { padding: 1.6rem 1.75rem 1rem; }
+.pfSectionHead .sapMTitle { color: var(--ink); font-weight: 800; letter-spacing: -.025em; }
+.pfFilters { margin: 0 1rem .75rem; padding: .4rem !important; border-radius: .8rem; background: #f5f8fa !important; border: 1px solid #e3eaee; }
+.pfTable .sapMListTblHeaderCell { background: #f8fafb; border-color: var(--line); }
+.pfTable .sapMColumnHeader .sapMText { color: #61778a; font-size: .72rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.pfTable .sapMLIB { border-color: #e6edf1; }
+.pfTable .sapMLIB:hover { background: #f4fbfa; }
+.pfStrong { color: var(--ink) !important; font-weight: 700 !important; }
+.pfFooter { padding: 1.5rem clamp(1.25rem, 5vw, 5rem) 2.5rem; color: var(--muted); }
+.pfDialog.sapMDialog { border-radius: 1rem; overflow: hidden; }
+.pfDialog .sapMDialogSection { background: #f5f8fa; }
+.pfDialog .sapMDialogScrollCont { padding: 1.5rem !important; }
+.pfDialogLead { font-size: 1.05rem !important; line-height: 1.55 !important; color: #40596c !important; margin-bottom: 1.25rem; }
+.pfInfoGrid { gap: .75rem; }
+.pfInfoBlock { flex: 1 1 9rem; background: white; border: 1px solid var(--line); border-radius: .75rem; padding: .8rem; }
+.pfInfoBlock .sapMLabel { color: var(--muted); font-size: .72rem; }
+.pfInfoBlock .sapMText { color: var(--ink); font-weight: 700; margin-top: .2rem; }
+.pfBusinessReason { margin-top: .8rem; padding: .9rem 1rem; border-left: 3px solid #10a88a; background: #eefaf7; border-radius: .4rem .75rem .75rem .4rem; }
+.pfBusinessReason .sapMLabel { color: #527267; font-size: .72rem; }
+.pfBusinessReason .sapMText { color: var(--ink); line-height: 1.45; margin-top: .2rem; }
+.pfDialogAmount { margin: 1.4rem 0 !important; gap: .45rem; }
+.pfDialogAmountValue { color: #087f6c !important; font-size: 1.8rem !important; line-height: 1 !important; font-weight: 800 !important; font-variant-numeric: tabular-nums; }
+.pfDialogCurrency { color: #526c7e !important; font-size: .78rem !important; padding-bottom: .15rem; }
+.pfDecisionForm, .pfExistingReview { background: white; border: 1px solid var(--line); border-radius: 1rem; padding: 1.2rem; }
+@media (max-width: 700px) {
+  .pfLoginShell { padding: .7rem; justify-content: flex-start !important; }
+  .pfLoginCard { min-height: auto; border-radius: 1rem; }
+  .pfLoginVisual { flex-basis: 100%; min-height: 19rem; padding: 1.5rem; }
+  .pfLoginLogo { width: 4rem !important; height: 4rem !important; }
+  .pfLoginHeroTitle { font-size: 2.5rem !important; }
+  .pfLoginForm { flex-basis: 100%; padding: 1.5rem; }
+  .pfLogoImage { width: 2.6rem !important; height: 2.6rem !important; flex-basis: 2.6rem; }
+  .pfTopbar .sapMObjStatus, .pfTopbar .pfMuted, .pfUserIdentity { display: none; }
+  .pfHero { padding-top: 3rem; padding-bottom: 3.5rem; }
+  .pfStats { margin-top: 1rem; gap: .65rem; }
+  .pfStatCard { flex-basis: calc(50% - .35rem); min-width: 8.5rem; min-height: 6.2rem; padding: 1rem; }
+  .pfWorkspace { margin-left: .65rem; margin-right: .65rem; }
+  .pfFilters { height: auto !important; flex-wrap: wrap; }
+  .pfFilters .sapMSF { width: 100% !important; }
+  .pfFooter { flex-direction: column; gap: .4rem; }
+  .pfDialog.sapMDialog { width: calc(100% - 1rem) !important; max-width: none !important; margin: .5rem; }
+  .pfDialog .sapMDialogScrollCont { padding: 1rem !important; }
+  .pfInfoBlock { flex-basis: 100%; }
+  .pfDecisionForm, .pfExistingReview { padding: 1rem; }
+}

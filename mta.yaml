@@ -1,0 +1,73 @@
+_schema-version: "3.3"
+ID: procureflow
+version: 1.0.0
+
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+        - cp -R app gen/srv/app
+
+modules:
+  - name: procureflow-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      memory: 512M
+      disk-quota: 1G
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: procureflow-db
+      - name: procureflow-auth
+      - name: procureflow-destination
+
+  - name: procureflow-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: procureflow-db
+
+  - name: procureflow-approuter
+    type: approuter.nodejs
+    path: app-router
+    parameters:
+      memory: 128M
+      disk-quota: 256M
+    requires:
+      - name: procureflow-auth
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+
+resources:
+  - name: procureflow-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+  - name: procureflow-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: xs-security.json
+
+  - name: procureflow-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite

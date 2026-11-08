@@ -1,0 +1,180 @@
+{
+  "name": "sap-procurement-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Application pédagogique SAP CAP et Fiori de suivi des commandes d'achat",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "cds-serve",
+    "start:local": "npm run init-db && cds-serve",
+    "dev": "npm run init-db && cds watch",
+    "s4:mock": "node scripts/s4-mock-server.js",
+    "start:s4-mock": "node scripts/start-with-s4-mock.js",
+    "init-db": "cds deploy --to sqlite:db.sqlite && node scripts/migrate-sample-data.js",
+    "test": "node --test test/*.test.js",
+    "test:unit": "node --test test/review-validation.test.js",
+    "test:integration": "node --test test/api.integration.test.js",
+    "test:ui": "playwright test",
+    "check": "cds compile srv --to json --dest gen/check && npm test && npm run test:ui"
+  },
+  "dependencies": {
+    "@cap-js/hana": "3.1.2",
+    "@cap-js/sqlite": "3.1.2",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/cds": "10.1.1",
+    "@sap/xssec": "4.16.0",
+    "express": "5.3.0"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "1.0.2",
+    "@playwright/test": "^1.65.0",
+    "@sap/cds-dk": "10.1.0"
+  },
+  "overrides": {
+    "body-parser": "2.4.0",
+    "follow-redirects": "1.16.2",
+    "handlebars": "4.7.10",
+    "node-forge": "1.4.3",
+    "proxy-addr": "2.0.8",
+    "qs": "6.17.1",
+    "@sap/cds-dk@10.1.0": {
+      "body-parser": "2.4.0",
+      "handlebars": "4.7.10",
+      "proxy-addr": "2.0.8",
+      "qs": "6.17.1"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "[development]": {
+          "credentials": {
+            "url": "db.sqlite"
+          }
+        },
+        "[test]": {
+          "credentials": {
+            "url": ":memory:"
+          }
+        },
+        "[production]": {
+          "kind": "hana"
+        }
+      },
+      "auth": {
+        "[development]": {
+          "kind": "basic",
+          "users": {
+            "viewer": {
+              "password": "viewer123",
+              "roles": [
+                "Viewer"
+              ]
+            },
+            "approver": {
+              "password": "approver123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "DepartmentManager"
+              ]
+            },
+            "finance": {
+              "password": "finance123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "FinanceController"
+              ]
+            },
+            "director": {
+              "password": "director123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "PurchasingDirector"
+              ]
+            },
+            "admin": {
+              "password": "admin123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "Admin",
+                "DepartmentManager",
+                "FinanceController",
+                "PurchasingDirector"
+              ]
+            },
+            "*": false
+          }
+        },
+        "[test]": {
+          "kind": "basic",
+          "users": {
+            "viewer": {
+              "password": "viewer123",
+              "roles": [
+                "Viewer"
+              ]
+            },
+            "approver": {
+              "password": "approver123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "DepartmentManager"
+              ]
+            },
+            "finance": {
+              "password": "finance123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "FinanceController"
+              ]
+            },
+            "director": {
+              "password": "director123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "PurchasingDirector"
+              ]
+            },
+            "admin": {
+              "password": "admin123",
+              "roles": [
+                "Viewer",
+                "Approver",
+                "Admin",
+                "DepartmentManager",
+                "FinanceController",
+                "PurchasingDirector"
+              ]
+            },
+            "*": false
+          }
+        },
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      },
+      "CE_PURCHASEORDER_0001": {
+        "kind": "odata",
+        "model": "srv/external/CE_PURCHASEORDER_0001",
+        "[production]": {
+          "credentials": {
+            "destination": "S4HANA_PURCHASE_ORDER"
+          }
+        }
+      }
+    }
+  }
+}

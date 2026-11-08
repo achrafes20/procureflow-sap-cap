@@ -1,0 +1,20 @@
+{
+  "xsappname": "procureflow",
+  "tenant-mode": "dedicated",
+  "description": "Autorisations ProcureFlow",
+  "scopes": [
+    { "name": "$XSAPPNAME.Viewer", "description": "Consulter les achats" },
+    { "name": "$XSAPPNAME.Approver", "description": "Créer des demandes et décisions" },
+    { "name": "$XSAPPNAME.DepartmentManager", "description": "Valider au niveau département" },
+    { "name": "$XSAPPNAME.FinanceController", "description": "Valider le budget" },
+    { "name": "$XSAPPNAME.PurchasingDirector", "description": "Valider et créer les commandes" },
+    { "name": "$XSAPPNAME.Admin", "description": "Administrer ProcureFlow" }
+  ],
+  "role-templates": [
+    { "name": "Viewer", "description": "Consultation", "scope-references": ["$XSAPPNAME.Viewer"] },
+    { "name": "DepartmentManager", "description": "Responsable département", "scope-references": ["$XSAPPNAME.Viewer", "$XSAPPNAME.Approver", "$XSAPPNAME.DepartmentManager"] },
+    { "name": "FinanceController", "description": "Contrôle financier", "scope-references": ["$XSAPPNAME.Viewer", "$XSAPPNAME.Approver", "$XSAPPNAME.FinanceController"] },
+    { "name": "PurchasingDirector", "description": "Direction achats", "scope-references": ["$XSAPPNAME.Viewer", "$XSAPPNAME.Approver", "$XSAPPNAME.PurchasingDirector"] },
+    { "name": "Admin", "description": "Administration complète", "scope-references": ["$XSAPPNAME.Viewer", "$XSAPPNAME.Approver", "$XSAPPNAME.DepartmentManager", "$XSAPPNAME.FinanceController", "$XSAPPNAME.PurchasingDirector", "$XSAPPNAME.Admin"] }
+  ]
+}

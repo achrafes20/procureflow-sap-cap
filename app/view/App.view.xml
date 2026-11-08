@@ -1,0 +1,108 @@
+<mvc:View controllerName="procureflow.controller.App" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m">
+  <App>
+    <Page showHeader="false" class="pfPage">
+      <content>
+        <VBox visible="{= !${app>/auth/authenticated}}" class="pfLoginShell" justifyContent="Center" alignItems="Center">
+          <HBox class="pfLoginCard" wrap="Wrap" alignItems="Stretch">
+            <VBox class="pfLoginVisual" justifyContent="SpaceBetween">
+              <Image src="assets/procureflow-mark.png" alt="Logo ProcureFlow" decorative="false" densityAware="false" class="pfLoginLogo"/>
+              <VBox>
+                <Text text="PROCUREMENT, SIMPLIFIÉ" class="pfEyebrow"/>
+                <Title text="Décidez avec confiance." level="H1" class="pfLoginHeroTitle"/>
+                <Text text="Un espace sécurisé pour consulter, approuver et piloter les commandes d'achat." class="pfLoginHeroText"/>
+              </VBox>
+              <Text text="Projet pédagogique SAP CAP + Fiori" class="pfLoginFoot"/>
+            </VBox>
+            <VBox class="pfLoginForm" justifyContent="Center">
+              <Text text="BIENVENUE" class="pfLoginKicker"/>
+              <Title text="Connexion à ProcureFlow" level="H2" class="pfLoginTitle"/>
+              <Text text="Utilisez un compte de démonstration pour accéder à votre espace." class="pfMuted pfLoginIntro"/>
+              <Label text="Identifiant" required="true" labelFor="loginUser"/>
+              <Input id="loginUser" value="approver" placeholder="viewer, approver, finance, director ou admin" submit=".onLogin"/>
+              <Label text="Mot de passe" required="true" labelFor="loginPassword" class="sapUiSmallMarginTop"/>
+              <Input id="loginPassword" type="Password" value="approver123" placeholder="Votre mot de passe" submit=".onLogin"/>
+              <ObjectStatus text="{app>/auth/error}" state="Error" visible="{= !!${app>/auth/error}}" class="sapUiSmallMarginTop"/>
+              <Button text="Se connecter" icon="sap-icon://log" type="Emphasized" width="100%" press=".onLogin" busy="{app>/auth/busy}" class="pfLoginButton"/>
+              <VBox class="pfDemoAccounts">
+                <Text text="COMPTES DE DÉMONSTRATION" class="pfStatLabel"/>
+                <Text text="viewer / viewer123  ·  Lecture"/><Text text="approver / approver123  ·  Responsable département"/><Text text="finance / finance123  ·  Contrôle financier"/><Text text="director / director123  ·  Direction achats"/><Text text="admin / admin123  ·  Administration"/>
+              </VBox>
+            </VBox>
+          </HBox>
+        </VBox>
+
+        <VBox visible="{app>/auth/authenticated}" class="pfShell">
+          <HBox class="pfTopbar" justifyContent="SpaceBetween" alignItems="Center">
+            <HBox alignItems="Center">
+              <Image src="assets/procureflow-mark.png" alt="Logo ProcureFlow" decorative="false" densityAware="false" class="pfLogoImage"/>
+              <VBox class="sapUiTinyMarginBegin"><Title text="ProcureFlow" level="H3" class="pfBrand"/><Text text="Smart procurement cockpit" class="pfMuted"/></VBox>
+            </HBox>
+            <HBox alignItems="Center">
+              <VBox alignItems="End" class="pfUserIdentity"><Text text="{app>/user/id}" class="pfStrong"/><Text text="{app>/user/roleLabel}" class="pfMuted"/></VBox>
+              <Avatar initials="{app>/user/initials}" tooltip="Utilisateur : {app>/user/id}" class="sapUiTinyMarginBegin"/>
+              <Button icon="sap-icon://log" tooltip="Se déconnecter" type="Transparent" press=".onLogout" class="sapUiTinyMarginBegin"/>
+            </HBox>
+          </HBox>
+
+          <Toolbar class="pfNavBar">
+            <Button text="Demandes &amp; Workflow" icon="sap-icon://workflow-tasks" type="Transparent" press=".onShowRequests"/>
+            <Button text="Commandes" icon="sap-icon://cart" type="Transparent" press=".onShowOrders"/>
+            <Button text="Administration" icon="sap-icon://shield" type="Transparent" press=".onShowAdmin" visible="{app>/user/isAdmin}"/>
+            <ToolbarSpacer/><ObjectStatus text="Session sécurisée" state="Success" icon="sap-icon://locked"/>
+          </Toolbar>
+
+          <VBox visible="{= ${app>/view} === 'orders'}" class="pfHero"><Text text="ESPACE DE PILOTAGE" class="pfEyebrow"/><Title text="Vos achats, sous contrôle." level="H1" class="pfHeroTitle"/><Text text="Analysez les commandes, prenez une décision et gardez une trace fiable de chaque validation." class="pfHeroText"/></VBox>
+
+          <HBox visible="{= ${app>/view} === 'orders'}" class="pfStats" wrap="Wrap">
+            <VBox class="pfStatCard pfStatPrimary"><Text text="COMMANDES" class="pfStatLabel"/><ObjectNumber number="{app>/stats/total}" class="pfStatNumber"/><Text text="dans le portefeuille" class="pfMuted"/></VBox>
+            <VBox class="pfStatCard"><Text text="À TRAITER" class="pfStatLabel"/><ObjectNumber number="{app>/stats/pending}" state="Warning" class="pfStatNumber"/><Text text="décisions attendues" class="pfMuted"/></VBox>
+            <VBox class="pfStatCard"><Text text="APPROUVÉES" class="pfStatLabel"/><ObjectNumber number="{app>/stats/approved}" state="Success" class="pfStatNumber"/><Text text="commandes validées" class="pfMuted"/></VBox>
+            <VBox class="pfStatCard"><Text text="VALEUR TOTALE" class="pfStatLabel"/><ObjectNumber number="{app>/stats/value}" class="pfStatNumber pfValue"/><Text text="équivalent indicatif" class="pfMuted"/></VBox>
+          </HBox>
+
+          <VBox visible="{= ${app>/view} === 'orders'}" class="pfWorkspace">
+            <HBox class="pfSectionHead" justifyContent="SpaceBetween" alignItems="Center" wrap="Wrap"><VBox><Title text="Commandes d'achat" level="H2"/><Text text="Sélectionnez une ligne pour examiner et traiter la demande." class="pfMuted"/></VBox><Button text="Actualiser" icon="sap-icon://refresh" type="Transparent" press=".onRefresh"/></HBox>
+            <Toolbar class="pfFilters"><SearchField width="20rem" placeholder="Commande, fournisseur, acheteur…" liveChange=".onSearch"/><ToolbarSpacer/><Select selectedKey="{app>/statusFilter}" change=".onFilterStatus"><core:Item key="all" text="Tous les statuts"/><core:Item key="pending" text="À traiter"/><core:Item key="approved" text="Approuvées"/><core:Item key="rejected" text="Rejetées"/></Select></Toolbar>
+            <Table id="ordersTable" items="{app>/filteredOrders}" busy="{app>/busy}" noDataText="Aucune commande ne correspond à votre recherche" growing="true" growingScrollToLoad="true" itemPress=".onOpenOrder" class="pfTable">
+              <columns><Column><Text text="Commande"/></Column><Column><Text text="Fournisseur"/></Column><Column demandPopin="true" minScreenWidth="Tablet"><Text text="Catégorie"/></Column><Column demandPopin="true" minScreenWidth="Desktop" hAlign="Center"><Text text="Priorité"/></Column><Column hAlign="End"><Text text="Montant"/></Column><Column hAlign="Center"><Text text="Statut"/></Column></columns>
+              <items><ColumnListItem type="Navigation"><cells><ObjectIdentifier title="{app>orderNumber}" text="{app>formattedDate}"/><VBox><Text text="{app>supplier}" class="pfStrong"/><Text text="{app>buyer}" class="pfMuted"/></VBox><ObjectStatus text="{app>category}" icon="sap-icon://tag"/><ObjectStatus text="{app>priorityText}" state="{app>priorityState}"/><ObjectNumber number="{app>formattedAmount}" unit="{app>currency}"/><ObjectStatus text="{app>statusText}" state="{app>statusState}" inverted="true"/></cells></ColumnListItem></items>
+            </Table>
+          </VBox>
+
+          <VBox visible="{= ${app>/view} === 'requests'}">
+            <VBox class="pfHero pfRequestHero"><Text text="SOURCE-TO-PAY" class="pfEyebrow"/><Title text="De la demande à la commande." level="H1" class="pfHeroTitle"/><Text text="Contrôle budgétaire, risque fournisseur et workflow multi-niveaux dans un seul cockpit." class="pfHeroText"/></VBox>
+            <HBox class="pfStats" wrap="Wrap">
+              <VBox class="pfStatCard pfStatPrimary"><Text text="DEMANDES" class="pfStatLabel"/><ObjectNumber number="{app>/dashboard/requests}" class="pfStatNumber"/><Text text="tous statuts" class="pfMuted"/></VBox>
+              <VBox class="pfStatCard"><Text text="À VALIDER" class="pfStatLabel"/><ObjectNumber number="{app>/dashboard/pendingSteps}" state="Warning" class="pfStatNumber"/><Text text="étapes actives" class="pfMuted"/></VBox>
+              <VBox class="pfStatCard"><Text text="RISQUE ÉLEVÉ" class="pfStatLabel"/><ObjectNumber number="{app>/dashboard/highRisk}" state="Error" class="pfStatNumber"/><Text text="demandes sensibles" class="pfMuted"/></VBox>
+              <VBox class="pfStatCard"><Text text="BUDGET CONSOMMÉ" class="pfStatLabel"/><ObjectNumber number="{app>/dashboard/budgetConsumedText}" class="pfStatNumber pfValue"/><Text text="portefeuille budgétaire" class="pfMuted"/></VBox>
+            </HBox>
+            <VBox class="pfWorkspace">
+              <HBox class="pfSectionHead" justifyContent="SpaceBetween" alignItems="Center" wrap="Wrap"><VBox><Title text="Demandes d'achat" level="H2"/><Text text="Soumettez un besoin et suivez chaque niveau de validation." class="pfMuted"/></VBox><HBox><ObjectStatus text="{app>/system/sourceLabel}" state="Information" icon="sap-icon://database" class="sapUiTinyMarginEnd"/><Button text="Nouvelle demande" icon="sap-icon://add" type="Emphasized" press=".onCreateRequest" visible="{app>/user/canApprove}"/><Button text="Actualiser" icon="sap-icon://refresh" type="Transparent" press=".onRefresh"/></HBox></HBox>
+              <Table items="{app>/requests}" busy="{app>/busy}" noDataText="Aucune demande" itemPress=".onOpenRequest" class="pfTable">
+                <columns><Column><Text text="Demande"/></Column><Column><Text text="Objet"/></Column><Column demandPopin="true" minScreenWidth="Tablet"><Text text="Centre de coûts"/></Column><Column hAlign="End"><Text text="Montant"/></Column><Column hAlign="Center"><Text text="Risque"/></Column><Column hAlign="Center"><Text text="Statut"/></Column></columns>
+                <items><ColumnListItem type="Navigation"><cells><ObjectIdentifier title="{app>requestNumber}" text="{app>requester}"/><Text text="{app>title}"/><Text text="{app>costCenterCode}"/><ObjectNumber number="{app>formattedTotal}" unit="{app>currency}"/><ObjectStatus text="{app>riskLabel}" state="{app>riskState}" inverted="true"/><ObjectStatus text="{app>statusLabel}" state="{app>statusState}" inverted="true"/></cells></ColumnListItem></items>
+              </Table>
+            </VBox>
+            <HBox class="pfGovernanceGrid" wrap="Wrap">
+              <VBox class="pfWorkspace pfGovernanceCard"><VBox class="pfSectionHead"><Title text="Budgets par centre" level="H3"/><Text text="Disponible = alloué − engagé − consommé" class="pfMuted"/></VBox><List items="{app>/budgets}"><StandardListItem title="{app>costCenter_code}" description="{app>budgetDescription}" info="{app>availableText}" infoState="{app>availableState}"/></List></VBox>
+              <VBox class="pfWorkspace pfGovernanceCard"><VBox class="pfSectionHead"><Title text="Risque fournisseurs" level="H3"/><Text text="Qualité, livraison et conformité" class="pfMuted"/></VBox><List items="{app>/suppliers}"><StandardListItem title="{app>name}" description="{= 'Qualité ' + ${app>qualityScore} + '/100 · Livraison ' + ${app>deliveryScore} + '/100'}" info="{app>riskLevel}" infoState="{= ${app>riskLevel} === 'critical' || ${app>riskLevel} === 'high' ? 'Error' : ${app>riskLevel} === 'medium' ? 'Warning' : 'Success'}"/></List></VBox>
+            </HBox>
+          </VBox>
+
+          <VBox visible="{= ${app>/view} === 'admin'}" class="pfWorkspace pfAdminWorkspace">
+            <HBox class="pfSectionHead" justifyContent="SpaceBetween" alignItems="Center" wrap="Wrap"><VBox><Text text="ACCÈS ADMINISTRATEUR" class="pfEyebrow"/><Title text="Historique des décisions" level="H2"/><Text text="Contrôlez, corrigez ou supprimez les décisions enregistrées." class="pfMuted"/></VBox><ObjectStatus text="{= ${app>/adminStats/total} + ' décisions'}" state="Information" inverted="true"/></HBox>
+            <HBox class="pfAdminSummary" wrap="Wrap"><ObjectStatus text="{= ${app>/adminStats/approved} + ' approuvées'}" state="Success" icon="sap-icon://accept"/><ObjectStatus text="{= ${app>/adminStats/rejected} + ' rejetées'}" state="Error" icon="sap-icon://decline"/></HBox>
+            <Toolbar class="pfFilters"><SearchField width="22rem" placeholder="Commande, responsable, commentaire…" liveChange=".onAdminSearch"/><ToolbarSpacer/><Button text="Actualiser" icon="sap-icon://refresh" type="Transparent" press=".onRefresh"/></Toolbar>
+            <Table items="{app>/filteredReviews}" noDataText="Aucune décision enregistrée" growing="true" class="pfTable">
+              <columns><Column><Text text="Commande"/></Column><Column><Text text="Responsable"/></Column><Column demandPopin="true" minScreenWidth="Tablet"><Text text="Décision"/></Column><Column demandPopin="true" minScreenWidth="Desktop"><Text text="Commentaire"/></Column><Column demandPopin="true" minScreenWidth="Tablet"><Text text="Date"/></Column><Column hAlign="End"><Text text="Actions"/></Column></columns>
+              <items><ColumnListItem><cells><VBox><Text text="{app>orderNumber}" class="pfStrong"/><Text text="{app>supplier}" class="pfMuted"/></VBox><Text text="{app>reviewer}"/><ObjectStatus text="{app>statusText}" state="{app>statusState}" inverted="true"/><Text text="{app>comment}" maxLines="2"/><Text text="{app>formattedDecisionAt}"/><HBox justifyContent="End"><Button icon="sap-icon://edit" tooltip="Modifier" type="Transparent" press=".onEditReview"/><Button icon="sap-icon://delete" tooltip="Supprimer" type="Transparent" press=".onDeleteReview"/></HBox></cells></ColumnListItem></items>
+            </Table>
+          </VBox>
+
+          <HBox class="pfFooter" justifyContent="SpaceBetween"><Text text="ProcureFlow · Projet SAP CAP + Fiori"/><Text text="Données pédagogiques"/></HBox>
+        </VBox>
+      </content>
+    </Page>
+  </App>
+</mvc:View>

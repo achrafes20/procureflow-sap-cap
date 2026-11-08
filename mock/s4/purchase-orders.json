@@ -1,0 +1,44 @@
+[
+  {
+    "PurchaseOrder": "4500001001",
+    "PurchaseOrderType": "NB",
+    "CreatedByUser": "AMANSOURI",
+    "CreationDate": "2026-09-28",
+    "PurchaseOrderDate": "2026-10-01",
+    "ReleaseIsNotCompleted": false,
+    "CompanyCode": "MA01",
+    "PurchasingOrganization": "IT01",
+    "PurchasingGroup": "001",
+    "Supplier": "10000001",
+    "SupplierRespSalesPersonName": "Atlas Informatique",
+    "DocumentCurrency": "MAD"
+  },
+  {
+    "PurchaseOrder": "4500001002",
+    "PurchaseOrderType": "NB",
+    "CreatedByUser": "NLAHLOU",
+    "CreationDate": "2026-10-04",
+    "PurchaseOrderDate": "2026-10-05",
+    "ReleaseIsNotCompleted": false,
+    "CompanyCode": "MA01",
+    "PurchasingOrganization": "OPS1",
+    "PurchasingGroup": "002",
+    "Supplier": "10000002",
+    "SupplierRespSalesPersonName": "Green Energy SARL",
+    "DocumentCurrency": "MAD"
+  },
+  {
+    "PurchaseOrder": "4500001003",
+    "PurchaseOrderType": "NB",
+    "CreatedByUser": "SBENALI",
+    "CreationDate": "2026-10-09",
+    "PurchaseOrderDate": "2026-10-10",
+    "ReleaseIsNotCompleted": true,
+    "CompanyCode": "MA01",
+    "PurchasingOrganization": "FIN1",
+    "PurchasingGroup": "003",
+    "Supplier": "10000003",
+    "SupplierRespSalesPersonName": "Cloud Experts",
+    "DocumentCurrency": "EUR"
+  }
+]

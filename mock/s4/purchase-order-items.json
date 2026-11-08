@@ -1,0 +1,38 @@
+[
+  {
+    "PurchaseOrder": "4500001001",
+    "PurchaseOrderItem": "00010",
+    "DocumentCurrency": "MAD",
+    "MaterialGroup": "MAT-IT",
+    "PurchaseOrderItemText": "Ordinateurs portables professionnels",
+    "RequisitionerName": "Sara Amrani",
+    "NetAmount": 12500.00
+  },
+  {
+    "PurchaseOrder": "4500001001",
+    "PurchaseOrderItem": "00020",
+    "DocumentCurrency": "MAD",
+    "MaterialGroup": "MAT-IT",
+    "PurchaseOrderItemText": "Stations d'accueil USB-C",
+    "RequisitionerName": "Sara Amrani",
+    "NetAmount": 4200.00
+  },
+  {
+    "PurchaseOrder": "4500001002",
+    "PurchaseOrderItem": "00010",
+    "DocumentCurrency": "MAD",
+    "MaterialGroup": "ENERGIE",
+    "PurchaseOrderItemText": "Installation de panneaux solaires pilote",
+    "RequisitionerName": "Mehdi Alaoui",
+    "NetAmount": 28750.00
+  },
+  {
+    "PurchaseOrder": "4500001003",
+    "PurchaseOrderItem": "00010",
+    "DocumentCurrency": "EUR",
+    "MaterialGroup": "CONSEIL",
+    "PurchaseOrderItemText": "Mission d'architecture cloud et sécurité",
+    "RequisitionerName": "Nadia Benali",
+    "NetAmount": 6300.00
+  }
+]

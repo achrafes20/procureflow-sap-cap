@@ -1,0 +1,4 @@
+ID;name;minAmount;maxAmount;requiredRole;sequence;minRiskLevel;triggerMode;active
+b1000000-0000-4000-8000-000000000001;Validation département;0;;DepartmentManager;1;;all;true
+b1000000-0000-4000-8000-000000000002;Contrôle financier;10000;;FinanceController;2;;all;true
+b1000000-0000-4000-8000-000000000003;Direction achats;50000;;PurchasingDirector;3;high;any;true

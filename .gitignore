@@ -1,0 +1,12 @@
+node_modules/
+gen/
+.env
+.cdsrc-private.json
+db.sqlite
+*.sqlite-shm
+*.sqlite-wal
+playwright-report/
+test-results/
+coverage/
+mta_archives/
+*.mtar

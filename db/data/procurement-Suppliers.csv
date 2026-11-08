@@ -1,0 +1,5 @@
+ID;supplierNumber;name;country;category;qualityScore;deliveryScore;riskLevel;blocked;complianceValidUntil
+d1000000-0000-4000-8000-000000000001;10000001;Atlas Informatique;MAR;Informatique;92;88;low;false;2027-12-31
+d1000000-0000-4000-8000-000000000002;10000002;Green Energy SARL;MAR;Énergie;84;79;medium;false;2027-06-30
+d1000000-0000-4000-8000-000000000003;10000003;Cloud Experts;FRA;Conseil;68;90;high;false;2027-03-31
+d1000000-0000-4000-8000-000000000004;10000004;Global Risk Trading;MAR;Divers;55;61;critical;true;2025-12-31

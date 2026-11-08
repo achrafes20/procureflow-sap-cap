@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:4004/procurement
+
+### Lire toutes les commandes
+GET {{baseUrl}}/PurchaseOrders
+
+### Rechercher les commandes d'un fournisseur
+GET {{baseUrl}}/PurchaseOrders?$filter=contains(supplier,'Atlas')
+
+### Lire les décisions
+GET {{baseUrl}}/Reviews?$orderby=createdAt desc
+
+### Exemple valide : remplacer l'ID par une commande sans décision
+POST {{baseUrl}}/Reviews
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "22222222-2222-2222-2222-222222222222",
+  "purchaseOrderNumber": "4500000002",
+  "status": "approved",
+  "reviewer": "Achraf",
+  "comment": "Budget et besoin vérifiés."
+}
+
+### Exemple invalide : doit répondre 400
+POST {{baseUrl}}/Reviews
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "44444444-4444-4444-4444-444444444444",
+  "purchaseOrderNumber": "4500000004",
+  "status": "rejected",
+  "reviewer": "Achraf",
+  "comment": ""
+}
